@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Insurance Prediction</title>
+    <link rel="stylesheet" href="car.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Car Insurance Prediction</h2>
+        <form id="prediction-form">
+            <input type="number" name="age" id="age" placeholder="Age" required>
+            <input type="text" name="gender" id="gender" placeholder="Gender">
+            <input type="text" name="policy_type" id="policy_type" placeholder="Policy Type">
+            <input type="text" name="vehicle_type" id="vehicle_type" placeholder="Vehicle Type">
+            <input type="text" name="accident_type" id="accident_type" placeholder="Accident Type">
+            <input type="number" name="annual_premium" id="annual_premium" placeholder="Annual Premium">
+            <input type="number" name="claim_amount" id="claim_amount" placeholder="Claim Amount">
+            <input type="text" name="police_report" id="police_report" placeholder="Police Report">
+            <input type="text" name="witnesses" id="witnesses" placeholder="Witnesses">
+            <input type="number" name="past_claims" id="past_claims" placeholder="Past Claims">
+            <input type="number" name="days_to_claim" id="days_to_claim" placeholder="Days to Claim">
+            <input type="text" name="incident_location" id="incident_location" placeholder="Incident Location">
+            <button type="submit">Predict</button>
+        </form>
+        <div class="result">&nbsp;</div>
+    </div>
+    <script src="car.js"></script>
+</body>
+</html>

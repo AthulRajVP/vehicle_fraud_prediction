@@ -1,10 +1,13 @@
 import pickle
 import pandas as pd
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-model=pickle.load(open("model.pkl", "rb"))
+# Load model from the same directory as this script
+model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "model.pkl")
+model = pickle.load(open(model_path, 'rb'))
 
 app = FastAPI()
 app.add_middleware(
@@ -40,6 +43,7 @@ def home():
 @app.post("/predict")
 def predict(data: InputData):
     try:
+        print(f"📨 Received data: {data}")
         input_dict = {
             "Age": [data.Age],
             "Gender": [data.Gender],
@@ -58,22 +62,10 @@ def predict(data: InputData):
         # ── Step 2: Convert to DataFrame ──────────────────────
         input_df = pd.DataFrame(input_dict)          # ✅ was missing
 
-        # ── Step 3: Define categorical columns ────────────────
-        categorical_cols = [
-            "Gender",
-            "Policy_Type",
-            "Vehicle_Type",
-            "Accident_Type",
-            "Police_Report",
-            "Witness_Present",
-            "Incident_Location"
-        ]
-
-        # ── Step 4: Encode categorical columns ────────────────
-        input_df[categorical_cols] = scaler.transform(input_df[categorical_cols])
-
-        # ── Step 5: Predict ───────────────────────────────────
+        # ── Step 3: Predict ──────────────────────────────────
+        print(f"📊 DataFrame: {input_df}")
         prediction = model.predict(input_df)
+        print(f"🎯 Prediction: {prediction}")
 
         pred = int(prediction[0])
         
@@ -85,5 +77,8 @@ def predict(data: InputData):
         return {'prediction':result}
     
     except Exception as e:
+        print(f"❌ Error: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return {"error": str(e)}
 
