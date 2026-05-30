@@ -73,13 +73,12 @@ def predict(data: InputData):
         # (matches your notebook: drop_first=True on your dataset)
         trained_columns = [
             'Age', 'Annual_Premium', 'Claim_Amount', 'Past_Claims', 'Days_To_Claim',
-            'Gender_Male',
-            'Policy_Type_Liability', 'Policy_Type_Premium',
-            'Vehicle_Type_SUV', 'Vehicle_Type_Sedan', 'Vehicle_Type_Truck',
-            'Accident_Type_Rear-End', 'Accident_Type_Theft',
-            'Police_Report_Yes',
-            'Witness_Present_Yes',
-            'Incident_Location_Suburban'
+            'Gender_Female', 'Gender_Male', 'Policy_Type_Basic', 'Policy_Type_Gold',
+            'Policy_Type_Premium', 'Vehicle_Type_Hatchback', 'Vehicle_Type_SUV',
+            'Vehicle_Type_Sedan', 'Vehicle_Type_Truck', 'Accident_Type_Major',
+            'Accident_Type_Minor', 'Accident_Type_Total Loss', 'Police_Report_No',
+            'Police_Report_Yes', 'Witness_Present_No', 'Witness_Present_Yes',
+            'Incident_Location_Rural', 'Incident_Location_Urban'
         ]
 
         # Add any missing columns with 0
